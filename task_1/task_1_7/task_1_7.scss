@@ -1,0 +1,81 @@
+/*Global Start*/
+html, body {
+	font-family: '微软雅黑', Arial, sans-serif;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+/*Global End*/
+
+/*productNav Start*/
+#productNav {
+	position: relative;
+	.nav {
+		height: 60px;
+		margin: 20px 30px 20px 30px;
+		#title {
+			&::before {
+				content: url('images/nav-logo.png');
+				margin-right: 10px;
+				float:left;
+			}
+			font-size: 23px;
+			font-weight: bold;
+		}
+		div {
+			display: inline-block;
+			position: absolute;
+			right: 60px;
+			ul {
+				display: inline-block;
+				margin: 0px;
+				li {
+					text-align: center;
+					width: 60px;
+					height: 40px;
+					display: inline-block;
+					margin-right: 20px;
+					a {
+						text-decoration: none;
+						font-size: 15px;
+						color: #7A7A7C;
+						&:hover {
+							color: #DD544E;
+						}
+					}
+				}
+				li.active {
+					a {
+						color: #DD544E;
+					}
+					border-bottom: 4px solid #DD544E;
+				}
+			}
+		}
+		#loginBtn {
+			&::before {
+				content: url('images/nav-user.png');
+				margin-right: 5px;
+			}
+			color: #C6705F;
+			font-size: 15px;
+		}
+	}
+}
+/*productNav End*/
+
+/*productSlogan Start*/
+#productSlogan {
+	height: 690px;
+	background-image: url('images/slogan-bg.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+/*productSlogan End*/
+
+/*productFeature Start*/
+#productFeature {
+	width: 200px
+}
+/*productFeature End*/
