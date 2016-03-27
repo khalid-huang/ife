@@ -1,0 +1,51 @@
+/*实现内部块元素的居中对齐*/
+/*方法1*/
+/* section {
+	height: 200px;
+	background-color: gray;
+	display: flex;
+}
+div {
+	margin: auto; //主要依赖于margin设置auto，自动分配Flex容器额外空间
+} */
+/*方法2*/
+/* section {
+	height: 200px;
+	background-color: gray;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+div {
+} */
+
+.HolyGrail {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+header,
+footer {
+  flex: 1;
+  background-color: red;
+}
+
+.HolyGrail-body {
+  display: flex;
+  flex: 1;
+}
+
+.HolyGrail-content {
+  flex: 1;
+}
+
+.HolyGrail-nav, .HolyGrail-ads {
+  /* 两个边栏的宽度设为12em */
+  flex: 0 0 12em;
+}
+
+.HolyGrail-nav {
+  /* 导航放到最左边 */
+  order: -1;
+}
