@@ -1,0 +1,38 @@
+@charset "UTF-8";
+html, body {
+  padding: 0px;
+  margin: 0px; }
+
+@keyframes heightAnim {
+  0% {
+    bottom: -300px; }
+  100% {
+    bottom: 0; } }
+/*内部使用的时候只要在js里面加上left:每次加上10就可以了，第一个开头是left:10px, 后面自增10就可以了*/
+.aqi-chart-wrap {
+  position: relative;
+  height: 500px;
+  border: 2px solid lightgray;
+  width: 90%;
+  margin: 20px auto;
+  border-radius: 10px; }
+
+.bar {
+  position: absolute;
+  bottom: 0px;
+  display: inline-block;
+  /* 		height: 300px; */
+  float: left;
+  border: 1px solid lightgray;
+  animation: heightAnim 0.5s ease-in-out; }
+
+.day {
+  width: 0.5%; }
+
+.week {
+  width: 3.5%; }
+
+.month {
+  width: 15%; }
+
+/*# sourceMappingURL=task_2_17.css.map */
