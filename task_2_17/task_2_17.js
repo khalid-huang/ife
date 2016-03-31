@@ -58,6 +58,54 @@ function getRandomColor() {
   return '#' + (Math.random()*0xffffff << 0).toString(16);
 }
 
+//get weekData 
+function getWeekData(dayData) {
+  var result = {};
+  var count = 0, sum = 0;
+  for(var city in dayData) {
+    result[city] = [];
+    for(var i = 0, size = dayData[city].length; i < size; i++) {
+      count++;
+      sum += dayData[city][i].height;
+      if(count === 7) {
+        var data = {
+          week: dayData[city][i - 6].day + ' TO ' + dayData[city][i].day,
+          height: sum / 7
+        };
+        result[city].push(data);
+        count = 0;
+        sum = 0;
+      }
+    }
+  }
+  return result;
+}
+
+function getMonthData(dayData) {
+  var result = {};
+  var sum = 0, month, count = 0;
+  for(var city in dayData) {
+    result[city] = [];
+    month = dayData[city][0].day[6]; 
+    console.log(month);
+    for(var i = 0, size = dayData[city].length; i < size; i++) {
+      if(i != size-1 && month === dayData[city][i].day[6]) {
+        sum += dayData[city][i].height;
+        count++;
+      } else {
+        month = dayData[city][i].day[6];
+        var data = {
+          month: dayData[city][i].day.slice(0,6),
+          height: sum/count
+        };
+        sum = 0;
+        count = 0;
+        result[city].push(data);
+      }
+    }
+  }
+  return result;
+}
 
 // 用于渲染图表的数据
 // 整体的结构为 {day: {beijing: [], shanghai: []}
@@ -71,6 +119,23 @@ var pageState = {
   nowGraTime: "day"
 }
 
+var className = {
+  day: 'day',
+  week: 'week',
+  month: 'month'
+}
+
+var leftNum = {
+  day: 1.08,
+  week: 7.08,
+  month: 30
+}
+
+var leftInit = {
+  day: 1,
+  week: 6,
+  month: 10
+}
 /**
  * 渲染图表   // dayData 的结构 {beijin: [{day: "2016-01-01", height: ""}], }
  */
@@ -78,18 +143,16 @@ function renderChart() {
   var chartArea = document.getElementById('chartArea');
   chartArea.innerHTML = ""; //清除已有的图表
   var fragment = document.createDocumentFragment();
-  console.log(pageState);
   var selectedData = chartData[pageState.nowGraTime][pageState.nowSelectCity];
-  console.log(selectedData);
   var div = null;
   var size = selectedData ? selectedData.length : 0;
-  for(var i = 0, left = 1; i < size; i++) {
+  for(var i = 0, left = leftInit[pageState.nowGraTime]; i < size; i++) {
     div = document.createElement('div');
-    div.title = selectedData[i].day + ': ' + selectedData[i].height;
-    div.className = 'bar';
+    div.title = selectedData[i].title + ': ' + selectedData[i].height;
+    div.className = 'bar ' + className[pageState.nowGraTime];
     div.style.left = left + '%';
     div.style.backgroundColor = getRandomColor();
-    left += 1.08;
+    left += leftNum[pageState.nowGraTime];
     div.style.height = selectedData[i].height * 0.8;
     fragment.appendChild(div);
   }
@@ -167,16 +230,19 @@ function initAqiChartData() {
     monthData[city] = [];    
   }
 
-  //转换数据
+  //转换数据 for day
   for(city in aqiSourceData) {
     for(item in aqiSourceData[city]) {
       dayData[city].push({day: item, height: aqiSourceData[city][item]});
     }
   }
+
+  weekData = getWeekData(dayData);
+  monthData = getMonthData(dayData);
+
   chartData.day = dayData; 
   chartData.week = weekData;
   chartData.month = monthData;
-  console.log(chartData);
 }
 
 /**
