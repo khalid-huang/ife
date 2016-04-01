@@ -69,7 +69,7 @@ function getWeekData(dayData) {
       sum += dayData[city][i].height;
       if(count === 7) {
         var data = {
-          week: dayData[city][i - 6].day + ' TO ' + dayData[city][i].day,
+          grdTime: dayData[city][i - 6].grdTime + ' TO ' + dayData[city][i].grdTime,
           height: sum / 7
         };
         result[city].push(data);
@@ -86,16 +86,16 @@ function getMonthData(dayData) {
   var sum = 0, month, count = 0;
   for(var city in dayData) {
     result[city] = [];
-    month = dayData[city][0].day[6]; 
+    month = dayData[city][0].grdTime[6]; 
     console.log(month);
     for(var i = 0, size = dayData[city].length; i < size; i++) {
-      if(i != size-1 && month === dayData[city][i].day[6]) {
+      if(i != size-1 && month === dayData[city][i].grdTime[6]) {
         sum += dayData[city][i].height;
         count++;
       } else {
-        month = dayData[city][i].day[6];
+        month = dayData[city][i].grdTime[6];
         var data = {
-          month: dayData[city][i].day.slice(0,6),
+          grdTime: dayData[city][i].grdTime.slice(0,6),
           height: sum/count
         };
         sum = 0;
@@ -148,7 +148,7 @@ function renderChart() {
   var size = selectedData ? selectedData.length : 0;
   for(var i = 0, left = leftInit[pageState.nowGraTime]; i < size; i++) {
     div = document.createElement('div');
-    div.title = selectedData[i].title + ': ' + selectedData[i].height;
+    div.title = selectedData[i].grdTime + ': ' + selectedData[i].height;
     div.className = 'bar ' + className[pageState.nowGraTime];
     div.style.left = left + '%';
     div.style.backgroundColor = getRandomColor();
@@ -233,7 +233,7 @@ function initAqiChartData() {
   //转换数据 for day
   for(city in aqiSourceData) {
     for(item in aqiSourceData[city]) {
-      dayData[city].push({day: item, height: aqiSourceData[city][item]});
+      dayData[city].push({grdTime: item, height: aqiSourceData[city][item]});
     }
   }
 
