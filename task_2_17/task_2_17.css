@@ -15,7 +15,8 @@ html, body {
   border: 2px solid lightgray;
   width: 90%;
   margin: 20px auto;
-  border-radius: 10px; }
+  border-radius: 10px;
+  overflow: hidden; }
 
 .bar {
   position: absolute;
