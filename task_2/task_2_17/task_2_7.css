@@ -16,8 +16,9 @@ html, body {
     bottom: 0px;
     display: inline-block;
     /* 		height: 300px; */
-    float: left;
-    width: 0.5%;
-    border: 1px solid lightgray; }
+    width: 0.3%;
+    background-color: blue;
+    border: 1px solid lightgray;
+    margin-right: 3px; }
 
-/*# sourceMappingURL=task_2_17.css.map */
+/*# sourceMappingURL=task_2_7.css.map */

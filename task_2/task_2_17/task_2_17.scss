@@ -1,0 +1,23 @@
+html, body {
+	padding: 0px;
+	margin: 0px;
+}
+
+/*内部使用的时候只要在js里面加上left:每次加上10就可以了，第一个开头是left:10px, 后面自增10就可以了*/
+.aqi-chart-wrap {
+	position: relative;
+	height: 500px;
+	border: 2px solid lightgray;
+	width: 90%;
+	margin: 20px auto;
+	border-radius: 10px;
+	div.bar {
+		position: absolute;
+		bottom: 0px;
+		display: inline-block;
+/* 		height: 300px; */
+		float: left;
+		width: 0.5%;
+		border:1px solid lightgray;
+	}
+}

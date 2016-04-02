@@ -42,49 +42,93 @@ var aqiSourceData = {
   "沈阳": randomBuildData(500)
 };
 
+//跨浏览器绑定事件
+function addHandler(elem, type, handler) {
+  if(elem.addEventListener) {
+    elem.addEventListener(type, handler, false);
+  } else if(elem.attachEvent) {
+    elem.attackEvent('on' + type, handler);
+  } else {
+    elem['on' + type] = handler;
+  }
+}
+
+//颜色生成颜色 
+function getRandomColor() {
+  return '#' + (Math.random()*0xffffff << 0).toString(16);
+}
+
+
 // 用于渲染图表的数据
+// 整体的结构为 {day: {beijing: [], shanghai: []}
+//                week:
+//                 month:}
 var chartData = {};
 
 // 记录当前页面的表单选项
 var pageState = {
-  nowSelectCity: -1,
+  nowSelectCity: '北京',
   nowGraTime: "day"
 }
 
 /**
- * 渲染图表
+ * 渲染图表   // dayData 的结构 {beijin: [{day: "2016-01-01", height: ""}], }
  */
 function renderChart() {
-  
+  var chartArea = document.getElementById('chartArea');
+  chartArea.innerHTML = ""; //清除已有的图表
+  var fragment = document.createDocumentFragment();
+  console.log(pageState);
+  var selectedData = chartData[pageState.nowGraTime][pageState.nowSelectCity];
+  console.log(selectedData);
+  var div = null;
+  var size = selectedData ? selectedData.length : 0;
+  for(var i = 0, left = 1; i < size; i++) {
+    div = document.createElement('div');
+    div.title = selectedData[i].day + ': ' + selectedData[i].height;
+    div.className = 'bar';
+    div.style.left = left + '%';
+    div.style.backgroundColor = getRandomColor();
+    left += 1.08;
+    div.style.height = selectedData[i].height * 0.8;
+    fragment.appendChild(div);
+  }
+  chartArea.appendChild(fragment);
 }
 
 /**
  * 日、周、月的radio事件点击时的处理函数
  */
-function graTimeChange() {
-  // 确定是否选项发生了变化 
-
-  // 设置对应数据
-
-  // 调用图表渲染函数
+function graTimeChange(event) {
+  // 确定是否选项发生了变化
+  if(event.target.value !== pageState.nowGraTime) {
+      // 设置对应数据
+    pageState.nowGraTime = event.target.value;
+      // 调用图表渲染函数
+    renderChart();
+  }
 }
 
 /**
  * select发生变化时的处理函数
  */
-function citySelectChange() {
+function citySelectChange(event) {
   // 确定是否选项发生了变化 
-
-  // 设置对应数据
-
-  // 调用图表渲染函数
+  var nowSelectCity = this.value;
+  if(nowSelectCity !== pageState.nowSelectCity) {
+    // 设置对应数据
+    pageState.nowSelectCity = nowSelectCity;
+    // 调用图表渲染函数    
+    renderChart();
+  }
 }
 
 /**
  * 初始化日、周、月的radio事件，当点击时，调用函数graTimeChange
  */
 function initGraTimeForm() {
-
+  var fieldset = document.getElementById('form-gra-time');
+  addHandler(fieldset, 'click', graTimeChange);
 }
 
 /**
@@ -92,9 +136,17 @@ function initGraTimeForm() {
  */
 function initCitySelector() {
   // 读取aqiSourceData中的城市，然后设置id为city-select的下拉列表中的选项
-
+  var fragment = document.createDocumentFragment();
+  var option = null;
+  for(var item in aqiSourceData) {
+    option = document.createElement('option');
+    option.appendChild(document.createTextNode(item));
+    fragment.appendChild(option);
+  }
+  var select = document.getElementById('city-select')
+  select.appendChild(fragment);
   // 给select设置事件，当选项发生变化时调用函数citySelectChange
-
+  addHandler(select, 'change', citySelectChange);
 }
 
 /**
@@ -103,6 +155,28 @@ function initCitySelector() {
 function initAqiChartData() {
   // 将原始的源数据处理成图表需要的数据格式
   // 处理好的数据存到 chartData 中
+  // dayData 的结构 {beijin: [{day: "2016-01-01", height: ""}], }
+  var dayData = {};
+  var weekData = {};
+  var monthData = {};
+  var city, item;
+  //初始化
+  for(city in aqiSourceData) {
+    dayData[city] = [];
+    weekData[city] = [];
+    monthData[city] = [];    
+  }
+
+  //转换数据
+  for(city in aqiSourceData) {
+    for(item in aqiSourceData[city]) {
+      dayData[city].push({day: item, height: aqiSourceData[city][item]});
+    }
+  }
+  chartData.day = dayData; 
+  chartData.week = weekData;
+  chartData.month = monthData;
+  console.log(chartData);
 }
 
 /**
@@ -113,5 +187,7 @@ function init() {
   initCitySelector();
   initAqiChartData();
 }
-
-init();
+window.onload = function () { 
+  init();
+  renderChart();
+}
