@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script type="text/javascript" src="task_2_18.js"></script>
+	<link rel="stylesheet" href="task_2_18.css">
+</head>
+<body>
+	<div id="part1">
+		<h1> 请输入信息并进行操作</h1>
+		<div id="infor">
+			<label for="num"> 数字：<input type="text" id="digit"> </label>
+			<label for="amount"> 进入个数: <input type="number" id="amount" min="1" max="60" value='1'> </label>
+		</div>
+		<div id="function">
+			<button data-function="leftIn">左侧入</button>
+			<button data-function="rightIn">右侧入</button>			
+			<button data-function="leftOut">左侧出</button>
+			<button data-function="rightOut">右侧出</button>
+			<button data-function="leftInAll">批量左侧入</button>
+			<button data-function="rightInAll">批量右侧入</button>
+			<button data-function="sort">排序</button>			
+		</div>
+	</div>
+	<div id="part2">
+		<div id="totalNum">2</div>
+		<div id="numList">
+			<span class="num" id="how"></span>
+			<span class="num" id="who"></span>			
+		</div>
+	</div>
+</body>
+</html>

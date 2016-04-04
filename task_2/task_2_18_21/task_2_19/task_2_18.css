@@ -1,0 +1,57 @@
+html, body {
+	margin: 30px 30px;
+}
+
+#part1 {
+	border: 2px solid gray;
+	padding-left: 10%;
+}
+
+#function button {
+	margin: 20px 20px 10px 0px;
+}
+
+#part2 {
+	margin-top: 30px;
+}
+
+#numList {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	height: 180px;
+	border: 2px solid gray;
+}
+
+.num {
+	margin: 10px 2px;
+	display: inline-block;
+	min-width: 10px;
+	font-size: 15px;
+	background-color: red;
+	color: white;
+	text-align: center;
+	line-height: 30px;
+	padding: 0 5px;
+	margin-bottom: 0px;
+}
+
+#who {
+	height: 12px;
+}
+#how {
+	height: 150px;
+}
+
+#totalNum {
+	height: 60px;
+	width: 60px;
+	background-color: #B3C85E;
+	color: white;
+	font-size: 30px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 60px;
+	margin-left: 50%;
+}
