@@ -1,0 +1,28 @@
+#numList {
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+
+.tag {
+	margin: 10px 10px;
+	display: inline-block;
+	min-width: 30px;
+	height: 30px;
+	font-size: 15px;
+	color: white;
+	text-align: center;
+	line-height: 30px;
+	padding: 0 5px;
+}
+.blue {
+	background-color: #8CC8FE;
+}
+
+.yellow {
+	background-color: #FBC980;
+}
+
+.red {
+	background-color: red;
+}
