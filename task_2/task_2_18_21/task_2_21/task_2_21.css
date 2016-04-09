@@ -1,7 +1,13 @@
 #numList {
+	display: -webkit-flex;
+	display: -ms-flexbox;
 	display: flex;
-	justify-content: flex-start;
-	flex-wrap: wrap;
+	-webkit-justify-content: flex-start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
 }
 
 .tag {
@@ -13,7 +19,7 @@
 	color: white;
 	text-align: center;
 	line-height: 30px;
-	padding: 0 5px;
+	padding: 0 10px;
 }
 .blue {
 	background-color: #8CC8FE;
@@ -25,4 +31,12 @@
 
 .red {
 	background-color: red;
+}
+
+.delete:hover {
+	background-color: red;
+}
+
+.delete:hover:before {
+	content: '删除'
 }
