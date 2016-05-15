@@ -1,0 +1,1 @@
+(function(){var a=window,b=document;function k(y,x,w,v){y="prototype";x="appendChild";w="insertBefore";v="createElement";if(a.Node&&a.Element){if(Node[y][x]!=Element[y][x]) Element[y][x]=Node[y][x];if(Node[y][w]!=Element[y][w]) Element[y][w]=Node[y][w];}if(a.Document&&a.Document[y][v]&&a.Document[y][v]!=b[v]){b[v]=Document[y][v]}}k();})();

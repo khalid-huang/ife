@@ -1,0 +1,83 @@
+#controller {
+  width: 20%;
+  margin: 100px auto;
+}
+
+#controller button {
+  width: 80%;
+  background-color: #83A863;
+  color: white;
+}
+
+.floatlayer {
+  position: fixed;
+  height: 200%;
+  width: 100%;
+  top: 0;
+  background-color: rgba(97, 97, 97, 0.8);
+}
+
+.floatlayer .window {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  border: 1px solid #979797;
+  border-radius: 20px;
+  background-color: white;
+  color: black;
+  padding: 20px 20px;
+}
+
+.floatlayer .window h1 {
+  font-size: 25px;
+}
+
+.floatlayer .window p {
+  font-size: 20px;
+}
+
+.floatlayer .window button#sure {
+  position: relative;
+  left: 55%;
+  width: 20%;
+  background-color: #22B93C;
+}
+
+.floatlayer .window button#cancle {
+  position: relative;
+  left: 55%;
+  width: 20%;
+  background-color: #CC555C;
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.web_btn {
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+  line-height: 2.333;
+  border-radius: 5px;
+  border-width: 0;
+}
+
+.clearfix:after {
+  content: ".";
+  height: 0;
+  visibility: hidden;
+  display: block;
+  clear: both;
+}
+
+.add {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  border: 60px solid #ccc;
+  outline: 60px dotted #fff;
+  outline-offset: -59.9px;
+  background: #ccc;
+}
