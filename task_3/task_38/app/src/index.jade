@@ -1,0 +1,27 @@
+doctype html
+html(lang="en")
+	head
+		title ife task 38
+		meta(charset="utf-8")
+		link(rel="stylesheet" type="text/css" href="./index.css")
+
+	body
+		table.grade-table#sortTable
+			tr
+				for item in ['姓名', '语文', '数学', '英语', '总分']
+					th= item
+						//- span.ascending-sort
+						//- span.descending-sort
+			tr
+				for item in ['小明', '80', '90', '70', '240']
+					td= item
+			tr
+				for item in ['小红', '90', '60', '90', '240']
+					td= item
+			tr
+				for item in ['小亮', '60', '100', '70', '230']
+					td= item
+
+	script(type="text/javascript" src="./jquery.min.js")
+	script(type="text/javascript" src="./util.js")
+	script(type="text/javascript" src="./index.js")
