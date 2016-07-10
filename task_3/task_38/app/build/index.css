@@ -1,8 +1,8 @@
 table.grade-table {
+  position: relative;
   width: 70%;
   margin: 50px auto;
   border-collapse: collapse;
-  border: 1px solid black;
   padding: 0;
 }
 
@@ -17,10 +17,12 @@ table.grade-table tr th {
   color: white;
   width: 10%;
   border: 1px solid black;
+  height: 45px;
 }
 
 table.grade-table tr td {
   border: 1px solid black;
+  width: 10%;
 }
 
 .ascending-sort, .descending-sort {
